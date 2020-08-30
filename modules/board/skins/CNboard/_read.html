@@ -1,0 +1,97 @@
+<div class="board_read">
+	<!-- READ HEADER -->	
+    <div class="read_header">
+		<h1>
+			<a href="{$oDocument->getPermanentUrl()}">{$oDocument->getTitle()}</a>
+		</h1>	
+        <p class="category" cond="$module_info->use_category=='Y'">category l <a href="{getUrl('category',$oDocument->get('category_srl'), 'document_srl', '')}">{$category_list[$oDocument->get('category_srl')]->title}</a>
+        </p>	
+		<ul cond="$module_info->sns_button=='y'" class="sns">
+        	<li class="gp"><g:plusone size="tall"></g:plusone></li>
+            <li class="fb"><div id="fb-root"></div><script src="http://connect.facebook.net/en_US/all.js#appId=195721947127172&amp;xfbml=1"></script><fb:like href="" send="false" layout="box_count" show_faces="false" font="tahoma"></fb:like></li>
+            <li class="tw"><a href="http://twitter.com/share" class="twitter-share-button" data-count="vertical" data-via="{$module_info->twm}">Tweet</a></li>
+        </ul>
+        <div class="info">
+        <img cond="$oDocument->getProfileImage()" src="{$oDocument->getProfileImage()}" width="60" height="60" alt="Profile" class="pf" /><span cond="!$oDocument->getProfileImage()"><img src="img/profile.png" alt="Profile" width="60" height="60" /></span>
+        <ul>
+        	<li><a cond="$module_info->display_author!='N' && !$oDocument->getMemberSrl() && $oDocument->isExistsHomepage()" href="{$oDocument->getHomepageUrl()}" onclick="window.open(this.href);return false;" class="author">{$oDocument->getNickName()}</a>
+			<block cond="$module_info->display_author!='N' && !$oDocument->getMemberSrl() && !$oDocument->isExistsHomepage()">{$oDocument->getNickName()}</block>
+			<a cond="$module_info->display_author!='N' && $oDocument->getMemberSrl()" href="#popup_menu_area" class="member_{$oDocument->get('member_srl')} author" onclick="return false">{$oDocument->getNickName()}</a></li>
+            <li>{$oDocument->getRegdate('Y.m.d/H:i')}</li>
+            <li><span class="read"><a href="#" title="{$lang->readed_count}">{$oDocument->get('readed_count')}</a></span><span class="comment"><a href="#" title="{$lang->comment}">{$oDocument->getCommentcount()}</a></span></li>
+        </ul>
+        </div>
+  	</div>
+    <!-- /READ HEADER -->
+	<!-- Extra Output -->
+	<div class="exOut" cond="$oDocument->isExtraVarsExists() && (!$oDocument->isSecret() || $oDocument->isGranted())">
+		<table border="1" cellspacing="0" summary="Extra Form Output">
+			<tr loop="$oDocument->getExtraVars() => $key,$val">
+				<th scope="row">{$val->name}</th>
+				<td>{$val->getValueHTML()}&nbsp;</td>
+			</tr>
+		</table>
+	</div>
+	<!-- /Extra Output -->    
+	<!-- READ BODY -->
+	<div class="read_body">
+		<!--@if($oDocument->isSecret() && !$oDocument->isGranted())-->
+		<form action="./" method="get" onsubmit="return procFilter(this, input_password)">
+			<input type="hidden" name="mid" value="{$mid}" />
+			<input type="hidden" name="page" value="{$page}" />
+			<input type="hidden" name="document_srl" value="{$oDocument->document_srl}" />
+			<p><label for="cpw">{$lang->msg_is_secret} {$lang->msg_input_password}</label></p>
+			<p><input type="password" name="password" id="cpw" class="iText" /><span class="grey"><input type="submit" value="{$lang->cmd_input}" /></span></p>
+		</form>
+		<!--@else-->
+		{$oDocument->getContent(false)}
+		<!--@end-->
+	</div>
+	<!-- /READ BODY -->
+	<!-- READ FOOTER -->
+	<div class="read_footer">  
+    	<ul class="left">
+        	<li cond="$oDocument->hasUploadedFiles()">
+        		<div class="fileList">
+        			<button type="button" class="toggleFile" onclick="jQuery(this).next('table.files').toggle();" title="{$lang->uploaded_file}"><strong>{$oDocument->get('uploaded_count')}</strong></button>
+					<table class="files">
+            			<tr>
+                			<th>file name</th>
+                    		<th>download</th>
+                		</tr>
+                		<tr loop="$oDocument->getUploadedFiles()=>$key,$file">
+                			<td class="list"><a href="{getUrl('')}{$file->download_url}">{$file->source_filename}</a></td>
+                    		<td class="count">{number_format($file->download_count)}</td>
+                		</tr>
+            		</table>
+        		</div> 
+        	</li>
+            {@ $tag_list = $oDocument->get('tag_list') }
+            <li cond="count($tag_list)">
+        		<span class="tags">
+					<!--@for($i=0;$i<count($tag_list);$i++)-->
+						{@ $tag = $tag_list[$i]; }
+						<a href="{getUrl('search_target','tag','search_keyword',$tag,'document_srl','')}" class="tag" rel="tag">{htmlspecialchars($tag)}</a><span>,</span>
+					<!--@end-->        
+        		</span>
+        	</li>
+        </ul>
+		<ul class="sns">
+			<li class="xe link"><a class="document_{$oDocument->document_srl} action" href="#popup_menu_area" title="{$lang->cmd_document_do}" onclick="return false">XE</a></li>
+		</ul>
+	</div>
+	<div class="read_sign" cond="$module_info->display_sign!='N'&& $oDocument->getSignature()">
+		<div cond="$oDocument->getSignature()" class="signature">{$oDocument->getSignature()}</div>
+	</div>     
+    <div class="btn">
+		<span class="goList"><a href="{getUrl('document_srl','')}" title="{$lang->cmd_list}">{$lang->cmd_list}</a></span>
+		<span class="goEdit">
+			<a cond="$oDocument->isEditable()" href="{getUrl('act','dispBoardWrite','document_srl',$oDocument->document_srl,'comment_srl','')}" title="{$lang->cmd_modify}" class="modify">{$lang->cmd_modify}</a>
+			<a cond="$oDocument->isEditable()" href="{getUrl('act','dispBoardDelete','document_srl',$oDocument->document_srl,'comment_srl','')}" title="{$lang->cmd_delete}" class="delete">{$lang->cmd_delete}</a>
+		</span>    
+    </div>
+	<!-- /READ FOOTER -->    
+</div>
+<block cond="$oDocument->allowComment()">
+	<include target="_comment.html" />
+</block>

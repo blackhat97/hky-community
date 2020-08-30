@@ -1,0 +1,266 @@
+@charset "utf-8";
+body, td, select, input, div, form,textarea, center, option, pre, blockquote {font-size:9pt;}
+A:link     {color:#999; text-decoration:none}
+A:visited {color:#5b9000; text-decoration:none}
+A:active  {color:#999; text-decoration:none}
+A:hover   {color:#000;  text-decoration:none;}
+.ez_body
+{
+	background-color: #eef2f6;
+}
+body, dl, dt, dd, ul, li, h1, h2, h3, h4, h5, h6, textarea, p, th, td
+{
+	margin: 0;
+	padding: 0;
+	font-family: dotum,"돋움",tahoma;
+}
+li
+{
+	list-style-type: none;
+}
+a
+{
+	text-decoration: none;
+}
+.ez_copy
+{
+	color: #fff;
+	padding: 20px;
+	text-align: center;
+	background-color: #002045;
+}
+.ez_copy a
+{
+	text-align: center;
+}
+.ez_copy h2 {
+    display: inline;
+    margin-right: 5px;
+}
+img {
+    vertical-align: middle;
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+.ez_content
+{
+	width: 980px;
+	margin: 10px auto;
+	padding: 20px;
+	color: #28292e;
+    background: #fefefe;
+    border: 1px solid #d6e0ea;
+    border-radius: 4px !important;
+    box-shadow: rgba(120,151,186,0.12) 0px 2px 2px, rgba(120,151,186,0.12) 0px 4px 10px;
+	display: table;
+    table-layout: fixed;
+    margin-bottom: 10px;
+    min-height: 1px;
+}
+.ez_tbox
+{
+	width: 1022px;
+	margin: 0 auto;
+}
+.ez_tbox li
+{
+	float: left;
+	padding: 2px;
+}
+.ez_tbox li a
+{
+	color: #fff;
+	font-size: 13px;
+	font-weight: normal;
+}
+.ez_top
+{
+	line-height: 28px;
+	height: 31px;
+	position : fixed;
+	width : 100%;
+	z-index : 9999;
+	background: linear-gradient(#000, #002045);
+    box-shadow: 0 0 14px rgba(100,100,100,0.25);
+
+}
+.ez_tbox .logo_box{
+    margin-right: 10px;
+    margin-top: -2px;
+    float: left;
+    text-shadow: 0 -1px 0 #ccc;
+    text-decoration: none !important;
+}
+.ez_tbox .logo_box a {
+    font-size: 15px;
+    font-weight: normal;
+    color: #fff;
+	margin-top: 4px;
+    float: left;
+    text-shadow: 0 -1px 0 #ccc;
+    text-decoration: none !important;
+}
+.logo_box img {
+	width: 100%;
+    height: 100%;
+	margin-top: -3px;
+    float: left;
+}
+.top_annoucements
+{
+    background: #fefefe;
+    border: 1px solid #d6e0ea;
+    border-radius: 4px;
+    box-shadow: rgba(120,151,186,0.12) 0px 2px 2px, rgba(120,151,186,0.12) 0px 4px 10px;
+    border-width: 0;
+	padding-top: 30px;
+}
+.top_annoucements .annoucements_title 
+{
+    margin: 0 auto;
+    padding: 6px 1px 7px 7px;	
+    width: 1010px;
+	height: 21px;
+}
+.p-title-value {
+	float: left;
+	width: 745px;
+    padding: 0;
+    margin-top: 4px;
+    font-size: 11px;
+    font-weight: 400;
+    margin-right: auto;
+}
+.search_box {
+    margin-bottom: 0;
+	float: right;
+}
+/* Search */
+.search{display:inline-block;*display:inline;zoom:1;vertical-align:top;margin:0}
+.search>input{font-size:11px;vertical-align:top;border-radius:0}
+.search>input[type="text"]{background:#e5e6e8;border:1px solid #dedede;height:21px;line-height:21px;padding:0 4px;margin:0 -6px 0 0;width:150px}
+.search>input[type="submit"]{background:#eef2f6;border:1px solid #d8d8d8;color:#000;height:23px;line-height:22px;padding:0 15px;margin:0;cursor:pointer;box-shadow:0 1px 0 #fefefe inset}
+.menubar{
+float: right;
+}
+.menubar ul{
+	background: rgb(109,109,109);
+	list-style:none;
+	margin:0;
+	padding:0;
+}
+.menubar li{
+	float:left;
+	padding:0px;
+}
+.menubar li a{
+	color:#ff0000;
+	display:block;
+	font-weight:normal;
+	line-height:31px;
+	margin:0px;
+	padding:0px 25px;
+	text-align:center;
+	text-decoration:none;
+	background: linear-gradient(#000, #002045);
+}
+.menubar li a:hover, .menubar ul li:hover a{
+	background: rgb(0, 25, 54);
+	color:#FFFFFF;
+	text-decoration:none;
+}
+.menubar li ul{
+	background: rgb(109,109,109);
+	display:none; /* 평상시에는 드랍메뉴가 안보이게 하기 */
+	height:auto;
+	padding:0px;
+	margin:0px;
+	border:0px;
+	position:absolute;
+	width:fit-content;
+	z-index:200;
+	/*top:1em;
+	/*left:0;*/
+}
+.menubar li:hover ul{
+	display:block; /* 마우스 커서 올리면 드랍메뉴 보이게 하기 */
+}
+.menubar li li {
+	background: rgb(0, 32, 69);
+	display:block;
+	float:none;
+	margin:0px;
+	padding:0px;
+}
+.menubar li:hover li a{
+	background:none;
+}
+.menubar li ul a{
+	display:block;
+	font-size:12px;
+	font-style:normal;
+	margin:0px;
+	padding:0px 10px 0px 15px;
+	text-align:left;
+}
+.menubar li ul a:hover, .menubar li ul li:hover a{
+	background: rgb(71,71,71);
+	border:0px;
+	color:#ffffff;
+	text-decoration:none;
+}
+.menubar p{
+	clear:left;
+}
+.xicon{
+	float: left;
+    margin-right: 5px;
+	margin-top: 5px;
+	font-size: 13px;
+	color: #cd0a0a;
+}
+/* LEVEL ONE*/
+ul.dropdown { position: relative; }
+ul.dropdown li { font-weight: bold; float: left; zoom: 1; background: #000d1e; }
+ul.dropdown a:hover	{ color: #fff; }
+ul.dropdown a:active { color: #ffa500; }
+ul.dropdown li a { display: block; padding: 0 8px; border-right: 1px solid #333;line-height: 30px;height: 27px;color: #fff; }
+ul.dropdown li:last-child a { border-right: none; } /* Doesn't work in IE */
+ul.dropdown li.hover,
+ul.dropdown li:hover { background: #00142b; color: black; position: relative; }
+ul.dropdown li.hover a { color: black; }
+/* LEVEL TWO*/
+ul.dropdown ul { width: max-content; visibility: hidden; position: absolute; top: 100%; left: 0; }
+ul.dropdown ul li { font-weight: normal; padding: 0px; background: #002d61; color: #fff; border-bottom: 1px solid #0053b1; float: none; }
+/* IE 6 & 7 Needs Inline Block */
+ul.dropdown ul li a	{ border-right: none; width: 100%; display: inline-block; } 
+/* LEVEL THREE*/
+ul.dropdown ul ul { left: 100%; top: 0; }
+ul.dropdown li:hover > ul { visibility: visible; }
+.bottom_menu{width: 100%;margin: 20px auto 0;background: #000f21;}
+/* Site Layout - Footer */
+#bottom_box { margin:0; padding:0; border-top:3px solid #ec5569; text-align:center; padding:10px; clear:both;}
+#bottom_box li { display:inline; padding:10px; background:url(../images/default/vrType1.gif) no-repeat left center;}
+#bottom_box li.first-child { background:none;}
+#bottom_box li a { color:#999999; font:11px "돋움", Dotum, "굴림", Gulim, AppleGothic, Sans-serif;}
+#bottom_box li address { display:inline; }
+/* LEVEL ONE*/
+.ez_content .wnddkd { display: flex; padding: 0; border-radius: 5px; margin-bottom: 10px;    background: #fefefe;border: 1px solid #d6e0ea;border-radius: 4px !important;box-shadow: rgba(120,151,186,0.12) 0px 2px 2px, rgba(120,151,186,0.12) 0px 4px 10px;z-index: 999; }
+ul.center_box { position: relative;z-index: 999; }
+ul.center_box li { float: left; zoom: 1; }
+ul.center_box a:hover	{ color: #000 }
+ul.center_box a:active { color: #ffa500; }
+ul.center_box li a { display: inline; padding: 0 8px; border-right: 1px solid #333;line-height: 30px;height: 27px;color: #212121; }
+ul.center_box li:last-child a { border-right: none; } /* Doesn't work in IE */
+ul.center_box li.hover,
+ul.center_box li:hover { color: black; position: relative; }
+ul.center_box li.hover a { color: black; }
+/* LEVEL TWO*/
+ul.center_box ul { width: max-content; visibility: hidden; position: absolute; top: 100%; left: 0; border: 1px solid transparent; background: #fff;border-color: #B9B9B9;box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.2);}
+ul.center_box ul li { font-weight: normal; padding: 0px; background: #fff; color: #000; border-bottom: 1px solid #eef2f6; float: none; }
+/* IE 6 & 7 Needs Inline Block */
+ul.center_box ul li a	{ border-right: none; width: 100%; display: inline-block; } 
+/* LEVEL THREE*/
+ul.center_box ul ul { left: 100%; top: 0; }
+ul.center_box li:hover > ul { visibility: visible; }

@@ -1,0 +1,628 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout version="0.2">
+    <title xml:lang="ko">doorweb_v4 레이아웃</title>
+    <title xml:lang="en">doorweb_v4 Layout</title>
+    <description xml:lang="ko">doorweb_v4 레이아웃.</description>
+    <description xml:lang="en">doorweb_v4 layout.</description>
+    <version>1.7</version>
+    <date>2014-5-27</date>
+    <author email_address="doorweb1@gmail.com" link="http://doorweb.net/xe">
+        <name xml:lang="ko">DoorWeb</name>
+        <name xml:lang="en">DoorWeb</name>
+    </author>
+    <menus>
+        <menu name="GNB" maxdepth="2" default="true">
+            <title xml:lang="ko">메인메뉴</title>
+            <title xml:lang="en">Main Menu</title>
+        </menu>
+        <menu name="footer_menu" maxdepth="2" default="true">
+            <title xml:lang="ko">풋터메뉴</title>
+            <title xml:lang="en">Footer Menu</title>
+        </menu>
+    </menus>
+	<extra_vars>
+		<group>
+			<title xml:lang="ko">기본 설정</title>
+			<var name="LAYOUT_TYPE" type="select">
+				<title xml:lang="ko">레이아웃 유형</title>
+				<title xml:lang="en">Layout Type</title>
+				<options value="c">
+					<title xml:lang="ko">Main Page(본문)</title>
+					<title xml:lang="en">Main Page(Content)</title>
+				</options>
+				<options value="ec">
+					<title xml:lang="ko">Sub Page1(서브+본문)</title>
+					<title xml:lang="en">Sub Page1(LNB+Content)</title>
+				</options>
+				<options value="ce">
+					<title xml:lang="ko">Sub Page2(본문+서브)</title>
+					<title xml:lang="en">Sub Page2(Content+LNB)</title>
+				</options>
+			</var>
+			<var name="WEB_FONT" type="select">
+				<title xml:lang="ko">웹 폰트</title>
+				<title xml:lang="en">Web Font</title>
+				<options value="NO">
+					<title xml:lang="ko">'나눔고딕' 웹 폰트 사용 안함</title>
+					<title xml:lang="en">Do not use 'NanumGothic' web font</title>
+				</options>
+				<options value="YES">
+					<title xml:lang="ko">'나눔고딕' 웹 폰트 사용</title>
+					<title xml:lang="en">Use 'NanumGothic' web font</title>
+				</options>
+			</var>
+			<var name="bootstrap" type="select">
+				<title xml:lang="ko">bootstrap</title>
+				<title xml:lang="en">bootstrap</title>
+				<description xml:alng="ko">기본은 사용안함으로 하십시오. 게시판에 따라 bootstrap을 레이아웃에서 불러와야 할때 사용하시면 됩니다.</description>
+				<options value="NO">
+					<title xml:lang="ko">'bootstrap' 사용안함</title>
+					<title xml:lang="en">Do not use 'bootstrap'</title>
+				</options>
+				<options value="YES">
+					<title xml:lang="ko">'bootstrap' 사용</title>
+					<title xml:lang="en">Use 'bootstrap'</title>
+				</options>
+			</var>
+			<var name="basic_color" type="text">
+				<title xml:lang="ko">기본 포인트 색</title>
+				<description xml:alng="ko">사이트의 기본 포인트 색을 입력해 주십시오.(예 : #00aeef)</description>
+			</var>
+			<var name="basic_bg" type="text">
+				<title xml:lang="ko">기본 배경 색</title>
+				<description xml:alng="ko">사이트의 기본 배경 색을 입력해 주십시오.(예 : #f6f6f6)</description>
+			</var>
+			<var name="basic_bgimg" type="image">
+				<title xml:lang="ko">기본 배경 이미지</title>
+				<description xml:alng="ko">배경이미지가 repeat 됩니다.(패턴 이미지를 사용하셔야 합니다. http://subtlepatterns.com  에 다양한 패턴이 있습니다.)</description>
+			</var>
+			<var name="xe_width" type="text">
+				<title xml:lang="ko">최대 넓이</title>
+				<description xml:alng="ko">사이트 최대 넓이값을 입력해 주십시오(예 : 1200)</description>
+			</var>
+		</group>
+		<group>
+		<title xml:lang="ko">HEADER 설정</title>
+			<var name="LOGO_IMG" type="image">
+				<title xml:lang="ko">사이트 로고 이미지</title>
+				<title xml:lang="en">Site logo image</title>
+				<description xml:alng="ko">height:30px로 잡힙니다.</description>
+			</var>
+			<var name="LOGO_TEXT" type="text">
+				<title xml:lang="ko">사이트 로고 문자</title>
+				<title xml:lang="en">Site logo text</title>
+			</var>
+			<var name="menu_padding" type="text">
+				<title xml:lang="ko">1차메뉴 좌우여백</title>
+				<description xml:alng="ko">차메뉴 좌우여백을 입력해 주십시오(예 : 20)</description>
+			</var>
+			<var name="dropmenu_width" type="text">
+				<title xml:lang="ko">2차메뉴 넓이</title>
+				<description xml:alng="ko">2차메뉴 넓이를 입력해 주십시오(예 : 160)</description>
+			</var>
+			<var name="total_menu_list" type="text">
+				<title xml:lang="ko">전체메뉴 가로배열 갯수</title>
+				<description xml:alng="ko">전체메뉴 가로배열 갯수를 입력해 주십시오(예 : 6)</description>
+			</var>
+		</group>
+		<group>
+		<title xml:lang="ko">메인 슬라이드</title>
+			<var name="main_slide" type="select">
+				<title xml:lang="ko">슬라이드 사용 유무</title>
+				<description xml:lang="ko">슬라이드 사용 유무를 설정해 주십시오</description>
+				<options value="">
+					<title xml:lang="ko">사용안함</title>
+				</options>
+				<options value="A">
+					<title xml:lang="ko">ParallaxContentSlider - png 처리를 잘하면 이쁨니다.</title>
+				</options>
+				<options value="B">
+					<title xml:lang="ko">camera - 가변형 (이미지 처리가 약한 분들이 사용하기 무난)</title>
+				</options>
+				<options value="C">
+					<title xml:lang="ko">swiper - 터치형</title>
+				</options>
+			</var>
+			<var name="slide_speed" type="text">
+				<title xml:lang="ko">슬라이드 속도(예:5000 - 1000이 1초임)</title>
+				<title xml:lang="en">slide speed</title>
+			</var>
+			<var name="slide_bg" type="image">
+				<title xml:lang="ko">슬라이드 배경 이미지</title>
+				<title xml:lang="en">slide background image</title>
+			</var>
+			<var name="slide_title_color" type="text">
+				<title xml:lang="ko">슬라이드 타이틀 컬러</title>
+				<description xml:alng="ko">슬라이드 타이틀 컬러를 입력해 주십시오.(#fff)</description>
+			</var>
+			<var name="slide_text_color" type="text">
+				<title xml:lang="ko">슬라이드 텍스트 컬러</title>
+				<description xml:alng="ko">슬라이드 텍스트 컬러를 입력해 주십시오.(#888)</description>
+			</var>
+			<var name="slide_img1" type="image">
+				<title xml:lang="ko">슬라이드 이미지1</title>
+				<description xml:lang="ko">슬라이드 이미지1을 등록하세요.(ParallaxContentSlider : 높이 256px이 무난함)</description>
+			</var>
+			<var name="slide_title1" type="text">
+				<title xml:lang="ko">슬라이드 타이틀1</title>
+				<description xml:alng="ko">슬라이드 타이틀1을 입력해 주십시오.</description>
+			</var>
+			<var name="slide_text1" type="textarea">
+				<title xml:lang="ko">슬라이드 텍스트1</title>
+				<description xml:alng="ko">슬라이드 텍스트1을 입력해 주십시오.</description>
+			</var>
+			<var name="slide_url1" type="text">
+				<title xml:lang="ko">슬라이드 링크1</title>
+				<description xml:alng="ko">슬라이드 링크1을 입력해 주십시오.(달리 링크값이 없으면 #를 입력하십시오.)</description>
+			</var>
+
+			<var name="slide_img2" type="image">
+				<title xml:lang="ko">슬라이드 이미지2</title>
+				<description xml:lang="ko">슬라이드 이미지2을 등록하세요.(높이 256px이 무난함)</description>
+			</var>
+			<var name="slide_title2" type="text">
+				<title xml:lang="ko">슬라이드 타이틀2</title>
+				<description xml:alng="ko">슬라이드 타이틀2을 입력해 주십시오.</description>
+			</var>
+			<var name="slide_text2" type="textarea">
+				<title xml:lang="ko">슬라이드 텍스트2</title>
+				<description xml:alng="ko">슬라이드 텍스트2을 입력해 주십시오.</description>
+			</var>
+			<var name="slide_url2" type="text">
+				<title xml:lang="ko">슬라이드 링크2</title>
+				<description xml:alng="ko">슬라이드 링크2을 입력해 주십시오.(달리 링크값이 없으면 #를 입력하십시오.)</description>
+			</var>
+			<var name="slide_img3" type="image">
+				<title xml:lang="ko">슬라이드 이미지3</title>
+				<description xml:lang="ko">슬라이드 이미지3을 등록하세요.(높이 256px이 무난함)</description>
+			</var>
+			<var name="slide_title3" type="text">
+				<title xml:lang="ko">슬라이드 타이틀3</title>
+				<description xml:alng="ko">슬라이드 타이틀3을 입력해 주십시오.</description>
+			</var>
+			<var name="slide_text3" type="textarea">
+				<title xml:lang="ko">슬라이드 텍스트3</title>
+				<description xml:alng="ko">슬라이드 텍스트3을 입력해 주십시오.</description>
+			</var>
+			<var name="slide_url3" type="text">
+				<title xml:lang="ko">슬라이드 링크3</title>
+				<description xml:alng="ko">슬라이드 링크3을 입력해 주십시오.(달리 링크값이 없으면 #를 입력하십시오.)</description>
+			</var>
+
+			<var name="slide_img4" type="image">
+				<title xml:lang="ko">슬라이드 이미지4</title>
+				<description xml:lang="ko">슬라이드 이미지4을 등록하세요.(높이 256px이 무난함)</description>
+			</var>
+			<var name="slide_title4" type="text">
+				<title xml:lang="ko">슬라이드 타이틀4</title>
+				<description xml:alng="ko">슬라이드 타이틀4을 입력해 주십시오.</description>
+			</var>
+			<var name="slide_text4" type="textarea">
+				<title xml:lang="ko">슬라이드 텍스트4</title>
+				<description xml:alng="ko">슬라이드 텍스트4을 입력해 주십시오.</description>
+			</var>
+			<var name="slide_url4" type="text">
+				<title xml:lang="ko">슬라이드 링크4</title>
+				<description xml:alng="ko">슬라이드 링크4을 입력해 주십시오.(달리 링크값이 없으면 #를 입력하십시오.)</description>
+			</var>
+		</group>
+		<group>
+		<title xml:lang="ko">메인페이지 위젯</title>
+			<var name="c_widget" type="select">
+				<title xml:lang="ko">메인페이지 위젯 사용유무</title>
+				<description xml:lang="ko">메인페이지 위젯공간 사용 유무를 설정해 주십시오</description>
+				<options value="">
+					<title xml:lang="ko">사용안함</title>
+				</options>
+				<options value="Y">
+					<title xml:lang="ko">사용함</title>
+				</options>
+			</var>
+			<var name="c_bg_1" type="text">
+				<title xml:lang="ko">메인페이지 위젯의 배경색</title>
+				<description xml:lang="ko">메인페이지 위젯의 배경색을 입력해 주십시오.(예:#f5f5f5)</description>
+			</var>
+
+			<var name="c_title1_1" type="text">
+				<title xml:lang="ko">위젯1-1 타이틀</title>
+				<description xml:lang="ko">위젯1-1 타이틀을 입력해 주십시오.</description>
+			</var>
+			<var name="c_url1_1" type="text">
+				<title xml:lang="ko">L 위젯1-1 링크</title>
+				<description xml:lang="ko">타이틀을 클릭했을때 이동할 링크</description>
+			</var>
+			<var name="c_style1_1" type="select">
+				<title xml:lang="ko">L 위젯1-1 내용형태</title>
+				<description xml:lang="ko">내용형태를 설정해 주십시오.</description>
+				<options value="">
+					<title xml:lang="ko">사용안함</title>
+				</options>
+				<options value="A">
+					<title xml:lang="ko">제목</title>
+				</options>
+				<options value="B">
+					<title xml:lang="ko">이미지 + 제목 + 내용</title>
+				</options>
+				<options value="C">
+					<title xml:lang="ko">갤러리</title>
+				</options>
+			</var>
+			<var name="c_mid1_1" type="text">
+				<title xml:lang="ko">L 위젯1-1 mid</title>
+				<description xml:lang="ko">위젯1-1 mid값을 입력해 주십시오.</description>
+			</var>
+			<var name="c_widget1_1" type="textarea">
+				<title xml:lang="ko">L 위젯1-1 코드</title>
+				<description xml:lang="ko">위젯코드를 입력해 주십시오.</description>
+			</var>
+			
+
+			<var name="c_title1_2" type="text">
+				<title xml:lang="ko">위젯1-2 타이틀</title>
+				<description xml:lang="ko">위젯1-2 타이틀을 입력해 주십시오.</description>
+			</var>
+			<var name="c_url1_2" type="text">
+				<title xml:lang="ko">L 위젯1-2 링크</title>
+				<description xml:lang="ko">타이틀을 클릭했을때 이동할 링크</description>
+			</var>
+			<var name="c_style1_2" type="select">
+				<title xml:lang="ko">L 위젯1-2 내용형태</title>
+				<description xml:lang="ko">내용형태를 설정해 주십시오.</description>
+				<options value="">
+					<title xml:lang="ko">사용안함</title>
+				</options>
+				<options value="A">
+					<title xml:lang="ko">제목</title>
+				</options>
+				<options value="B">
+					<title xml:lang="ko">이미지 + 제목 + 내용</title>
+				</options>
+				<options value="C">
+					<title xml:lang="ko">갤러리</title>
+				</options>
+			</var>
+			<var name="c_mid1_2" type="text">
+				<title xml:lang="ko">L 위젯1-2 mid</title>
+				<description xml:lang="ko">위젯1-2 mid값을 입력해 주십시오.</description>
+			</var>
+			<var name="c_widget1_2" type="textarea">
+				<title xml:lang="ko">L 위젯1-2 코드</title>
+				<description xml:lang="ko">위젯코드를 입력해 주십시오.</description>
+			</var>
+			
+			<var name="c_title1_3" type="text">
+				<title xml:lang="ko">위젯1-3 타이틀</title>
+				<description xml:lang="ko">위젯1-3 타이틀을 입력해 주십시오.</description>
+			</var>
+			<var name="c_url1_3" type="text">
+				<title xml:lang="ko">L 위젯1-3 링크</title>
+				<description xml:lang="ko">타이틀을 클릭했을때 이동할 링크</description>
+			</var>
+			<var name="c_style1_3" type="select">
+				<title xml:lang="ko">L 위젯1-3 내용형태</title>
+				<description xml:lang="ko">내용형태를 설정해 주십시오.</description>
+				<options value="">
+					<title xml:lang="ko">사용안함</title>
+				</options>
+				<options value="A">
+					<title xml:lang="ko">제목</title>
+				</options>
+				<options value="B">
+					<title xml:lang="ko">이미지 + 제목 + 내용</title>
+				</options>
+				<options value="C">
+					<title xml:lang="ko">갤러리</title>
+				</options>
+			</var>
+			<var name="c_mid1_3" type="text">
+				<title xml:lang="ko">L 위젯1-3 mid</title>
+				<description xml:lang="ko">위젯1-3 mid값을 입력해 주십시오.</description>
+			</var>
+			<var name="c_widget1_3" type="textarea">
+				<title xml:lang="ko">L 위젯1-3 코드</title>
+				<description xml:lang="ko">위젯코드를 입력해 주십시오.</description>
+			</var>
+		</group>
+		<group>
+		<title xml:lang="ko">Sub Page(본문)</title>
+			<var name="sub_top" type="select">
+				<title xml:lang="ko">서브상단 배경이미지 공간 사용유무</title>
+				<description xml:lang="ko">서브상단 배경이미지 공간 사용 유무를 설정해 주십시오</description>
+				<options value="">
+					<title xml:lang="ko">사용안함</title>
+				</options>
+				<options value="Y">
+					<title xml:lang="ko">사용함</title>
+				</options>
+			</var>
+			<var name="sub_bgimg" type="image">
+				<title xml:lang="ko">서브상단 배경 이미지</title>
+				<description xml:alng="ko">큰 이미지를 등록하십시오.(권장 980*260 이상)</description>
+			</var>
+			<var name="breadclumb" type="select">
+				<title xml:lang="ko">빵조각 사용 유무</title>
+				<description xml:lang="ko">빵조각 사용 유무를 설정해 주십시오</description>
+				<options value="">
+					<title xml:lang="ko">사용안함</title>
+				</options>
+				<options value="Y">
+					<title xml:lang="ko">사용함</title>
+				</options>
+			</var>
+			<var name="c_bg" type="text">
+				<title xml:lang="ko">본문 배경색</title>
+				<description xml:lang="ko">본문(게시판이나 페이지를 감싸는 공간) 배경색을 입력해 주십시오.(예 : #fff)</description>
+			</var>
+		</group>
+		<group>
+		<title xml:lang="ko">Sub Page(서브)</title>
+			
+			<var name="lnb_color" type="text">
+				<title xml:lang="ko">로컬메뉴 포인트색</title>
+				<description xml:alng="ko">로컬메뉴 포인트 색을 입력해 주십시오.(예 : #7F859A)</description>
+			</var>
+			<var name="ec_widget" type="select">
+				<title xml:lang="ko">서브 위젯 사용유무</title>
+				<description xml:lang="ko">메인페이지 위젯공간 사용 유무를 설정해 주십시오</description>
+				<options value="">
+					<title xml:lang="ko">사용안함</title>
+				</options>
+				<options value="Y">
+					<title xml:lang="ko">사용함</title>
+				</options>
+			</var>
+
+			<var name="ec_title1_1" type="text">
+				<title xml:lang="ko">위젯1-1 타이틀</title>
+				<description xml:lang="ko">위젯1-1 타이틀을 입력해 주십시오.</description>
+			</var>
+			<var name="ec_url1_1" type="text">
+				<title xml:lang="ko">L 위젯1-1 링크</title>
+				<description xml:lang="ko">타이틀을 클릭했을때 이동할 링크</description>
+			</var>
+			<var name="ec_style1_1" type="select">
+				<title xml:lang="ko">L 위젯1-1 내용형태</title>
+				<description xml:lang="ko">내용형태를 설정해 주십시오.</description>
+				<options value="">
+					<title xml:lang="ko">사용안함</title>
+				</options>
+				<options value="A">
+					<title xml:lang="ko">제목</title>
+				</options>
+				<options value="B">
+					<title xml:lang="ko">이미지 + 제목 + 내용</title>
+				</options>
+				<options value="C">
+					<title xml:lang="ko">갤러리</title>
+				</options>
+			</var>
+			<var name="ec_mid1_1" type="text">
+				<title xml:lang="ko">L 위젯1-1 mid</title>
+				<description xml:lang="ko">위젯1-1 mid값을 입력해 주십시오.</description>
+			</var>
+			<var name="ec_widget1_1" type="textarea">
+				<title xml:lang="ko">L 위젯1-1 코드</title>
+				<description xml:lang="ko">위젯코드를 입력해 주십시오.</description>
+			</var>
+			
+
+			<var name="ec_title1_2" type="text">
+				<title xml:lang="ko">위젯1-2 타이틀</title>
+				<description xml:lang="ko">위젯1-2 타이틀을 입력해 주십시오.</description>
+			</var>
+			<var name="ec_url1_2" type="text">
+				<title xml:lang="ko">L 위젯1-2 링크</title>
+				<description xml:lang="ko">타이틀을 클릭했을때 이동할 링크</description>
+			</var>
+			<var name="ec_style1_2" type="select">
+				<title xml:lang="ko">L 위젯1-2 내용형태</title>
+				<description xml:lang="ko">내용형태를 설정해 주십시오.</description>
+				<options value="">
+					<title xml:lang="ko">사용안함</title>
+				</options>
+				<options value="A">
+					<title xml:lang="ko">제목</title>
+				</options>
+				<options value="B">
+					<title xml:lang="ko">이미지 + 제목 + 내용</title>
+				</options>
+				<options value="C">
+					<title xml:lang="ko">갤러리</title>
+				</options>
+			</var>
+			<var name="ec_mid1_2" type="text">
+				<title xml:lang="ko">L 위젯1-2 mid</title>
+				<description xml:lang="ko">위젯1-2 mid값을 입력해 주십시오.</description>
+			</var>
+			<var name="ec_widget1_2" type="textarea">
+				<title xml:lang="ko">L 위젯1-2 코드</title>
+				<description xml:lang="ko">위젯코드를 입력해 주십시오.</description>
+			</var>
+			
+			<var name="ec_title1_3" type="text">
+				<title xml:lang="ko">위젯1-3 타이틀</title>
+				<description xml:lang="ko">위젯1-3 타이틀을 입력해 주십시오.</description>
+			</var>
+			<var name="ec_url1_3" type="text">
+				<title xml:lang="ko">L 위젯1-3 링크</title>
+				<description xml:lang="ko">타이틀을 클릭했을때 이동할 링크</description>
+			</var>
+			<var name="ec_style1_3" type="select">
+				<title xml:lang="ko">L 위젯1-3 내용형태</title>
+				<description xml:lang="ko">내용형태를 설정해 주십시오.</description>
+				<options value="">
+					<title xml:lang="ko">사용안함</title>
+				</options>
+				<options value="A">
+					<title xml:lang="ko">제목</title>
+				</options>
+				<options value="B">
+					<title xml:lang="ko">이미지 + 제목 + 내용</title>
+				</options>
+				<options value="C">
+					<title xml:lang="ko">갤러리</title>
+				</options>
+			</var>
+			<var name="ec_mid1_3" type="text">
+				<title xml:lang="ko">L 위젯1-3 mid</title>
+				<description xml:lang="ko">위젯1-3 mid값을 입력해 주십시오.</description>
+			</var>
+			<var name="ec_widget1_3" type="textarea">
+				<title xml:lang="ko">L 위젯1-3 코드</title>
+				<description xml:lang="ko">위젯코드를 입력해 주십시오.</description>
+			</var>
+		</group>
+		<group>
+		<title xml:lang="ko">하단 광고용 슬라이드</title>
+			<var name="bottom_slide" type="select">
+				<title xml:lang="ko">광고용 슬라이드 사용 유무</title>
+				<description xml:lang="ko">광고용 슬라이드 사용 유무를 설정해 주십시오</description>
+				<options value="">
+					<title xml:lang="ko">사용안함</title>
+				</options>
+				<options value="Y">
+					<title xml:lang="ko">사용함</title>
+				</options>
+			</var>
+			<var name="bottom_bg" type="text">
+				<title xml:lang="ko">광고용 슬라이드의 배경색</title>
+				<description xml:lang="ko">광고용 슬라이드의 배경색을 입력해 주십시오.(예:#f5f5f5)</description>
+			</var>
+			<var name="bottom_window" type="select">
+				<title xml:lang="ko">새창띄위기 유무</title>
+				<description xml:lang="ko">창띄위기 사용 유무를 설정해 주십시오</description>
+				<options value="">
+					<title xml:lang="ko">사용안함</title>
+				</options>
+				<options value="Y">
+					<title xml:lang="ko">사용함</title>
+				</options>
+			</var>
+			<var name="bottom_img1" type="image">
+				<title xml:lang="ko">슬라이드 이미지1</title>
+				<description xml:lang="ko">슬라이드 이미지1을 등록하세요.(넓이 170px이 무난함)</description>
+			</var>
+			<var name="bottom_url1" type="text">
+				<title xml:lang="ko">L 슬라이드 링크1</title>
+				<description xml:alng="ko">슬라이드 링크1을 입력해 주십시오.</description>
+			</var>
+			
+			<var name="bottom_img2" type="image">
+				<title xml:lang="ko">슬라이드 이미지2</title>
+				<description xml:lang="ko">슬라이드 이미지2을 등록하세요.</description>
+			</var>
+			<var name="bottom_url2" type="text">
+				<title xml:lang="ko">L 슬라이드 링크2</title>
+				<description xml:alng="ko">슬라이드 링크2을 입력해 주십시오.</description>
+			</var>
+			
+			<var name="bottom_img3" type="image">
+				<title xml:lang="ko">슬라이드 이미지3</title>
+				<description xml:lang="ko">슬라이드 이미지3을 등록하세요.</description>
+			</var>
+			<var name="bottom_url3" type="text">
+				<title xml:lang="ko">L 슬라이드 링크3</title>
+				<description xml:alng="ko">슬라이드 링크3을 입력해 주십시오.</description>
+			</var>
+			
+			<var name="bottom_img4" type="image">
+				<title xml:lang="ko">슬라이드 이미지4</title>
+				<description xml:lang="ko">슬라이드 이미지4을 등록하세요.</description>
+			</var>
+			<var name="bottom_url4" type="text">
+				<title xml:lang="ko">L 슬라이드 링크4</title>
+				<description xml:alng="ko">슬라이드 링크4을 입력해 주십시오.</description>
+			</var>
+			
+			<var name="bottom_img5" type="image">
+				<title xml:lang="ko">슬라이드 이미지5</title>
+				<description xml:lang="ko">슬라이드 이미지5을 등록하세요.</description>
+			</var>
+			<var name="bottom_url5" type="text">
+				<title xml:lang="ko">L 슬라이드 링크5</title>
+				<description xml:alng="ko">슬라이드 링크5을 입력해 주십시오.</description>
+			</var>
+			
+			<var name="bottom_img6" type="image">
+				<title xml:lang="ko">슬라이드 이미지6</title>
+				<description xml:lang="ko">슬라이드 이미지6을 등록하세요.</description>
+			</var>
+			<var name="bottom_url6" type="text">
+				<title xml:lang="ko">L 슬라이드 링크6</title>
+				<description xml:alng="ko">슬라이드 링크6을 입력해 주십시오.</description>
+			</var>
+			
+			<var name="bottom_img7" type="image">
+				<title xml:lang="ko">슬라이드 이미지7</title>
+				<description xml:lang="ko">슬라이드 이미지7을 등록하세요.</description>
+			</var>
+			<var name="bottom_url7" type="text">
+				<title xml:lang="ko">L 슬라이드 링크7</title>
+				<description xml:alng="ko">슬라이드 링크7을 입력해 주십시오.</description>
+			</var>
+			
+			<var name="bottom_img8" type="image">
+				<title xml:lang="ko">슬라이드 이미지8</title>
+				<description xml:lang="ko">슬라이드 이미지8을 등록하세요.</description>
+			</var>
+			<var name="bottom_url8" type="text">
+				<title xml:lang="ko">L 슬라이드 링크8</title>
+				<description xml:alng="ko">슬라이드 링크8을 입력해 주십시오.</description>
+			</var>
+			
+			<var name="bottom_img9" type="image">
+				<title xml:lang="ko">슬라이드 이미지9</title>
+				<description xml:lang="ko">슬라이드 이미지9을 등록하세요.</description>
+			</var>
+			<var name="bottom_url9" type="text">
+				<title xml:lang="ko">L 슬라이드 링크9</title>
+				<description xml:alng="ko">슬라이드 링크9을 입력해 주십시오.</description>
+			</var>
+			
+			<var name="bottom_img10" type="image">
+				<title xml:lang="ko">슬라이드 이미지10</title>
+				<description xml:lang="ko">슬라이드 이미지10을 등록하세요.</description>
+			</var>
+			<var name="bottom_url10" type="text">
+				<title xml:lang="ko">L 슬라이드 링크10</title>
+				<description xml:alng="ko">슬라이드 링크10을 입력해 주십시오.</description>
+			</var>
+			
+			<var name="bottom_img11" type="image">
+				<title xml:lang="ko">슬라이드 이미지11</title>
+				<description xml:lang="ko">슬라이드 이미지11을 등록하세요.</description>
+			</var>
+			<var name="bottom_url11" type="text">
+				<title xml:lang="ko">L 슬라이드 링크11</title>
+				<description xml:alng="ko">슬라이드 링크11을 입력해 주십시오.</description>
+			</var>
+			
+			<var name="bottom_img12" type="image">
+				<title xml:lang="ko">슬라이드 이미지12</title>
+				<description xml:lang="ko">슬라이드 이미지12을 등록하세요.</description>
+			</var>
+			<var name="bottom_url12" type="text">
+				<title xml:lang="ko">L 슬라이드 링크12</title>
+				<description xml:alng="ko">슬라이드 링크12을 입력해 주십시오.</description>
+			</var>
+		</group>
+		<group>
+		<title xml:lang="ko">풋터</title>
+			<var name="footer_bg" type="text">
+				<title xml:lang="ko">풋터 배경색</title>
+				<description xml:lang="ko">풋터의 배경색을 입력해 주십시오.(예:#5B6882)</description>
+			</var>
+			<var name="footer_logo" type="image">
+				<title xml:lang="ko">사이트 로고 이미지(width:120px로 잡힙니다.)</title>
+			</var>
+			<var name="footer_menu_list" type="text">
+				<title xml:lang="ko">풋터메뉴 가로배열 갯수</title>
+				<description xml:alng="ko">풋터메뉴 가로배열 갯수를 입력해 주십시오(예 : 6)</description>
+			</var>
+			<var name="FOOTER" type="textarea">
+				<title xml:lang="ko">사이트 풋터 문자</title>
+				<title xml:lang="en">Site footer text</title>
+			</var>
+		</group>
+	</extra_vars>
+</layout>

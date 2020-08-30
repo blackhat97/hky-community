@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<skin version="0.2">
+    <title xml:lang="ko">CN Board</title>
+    <description xml:lang="ko">CieNDesign 게시판</description>
+    <version>1.0</version>
+    <date>2011-08-02</date>
+    <author email_address="ciendesign@gmail.com" link="http://ciendesign.com/">
+        <name xml:lang="ko">시엔디자인</name>
+    </author>
+    <license>LGPL v2</license>
+    <extra_vars>
+		<group>
+		<title>기본 설정</title>	
+		<var name="style" type="select">
+            <title xml:lang="ko">● 게시판 스타일</title>
+            <description xml:lang="ko">게시판 스타일을 선택해주세요.</description>
+				<options value="list">
+				<title xml:lang="ko">리스트</title>
+				</options>														
+        </var>		
+        <var name="title_image" type="image">
+            <title xml:lang="ko">● 게시판 제목 이미지</title>
+			<description xml:lang="ko">게시판 상단에 표시될 이미지를 등록하세요.</description>
+        </var>
+        <var name="title_alt" type="text">
+            <title xml:lang="ko">ㄴ 게시판 제목 이미지 alt</title>
+			<description xml:lang="ko">게시판 제목 이미지 마우스오버 시 나타날 텍스트를 입력하세요.</description>
+        </var>
+		</group>
+		
+		<group>
+		<title>SNS</title>
+		<var name="sns_button" type="select">
+            <title xml:lang="ko">● SNS 버튼</title>
+            <description xml:lang="ko">SNS 버튼 사용유무를 선택해주세요.</description>
+				<options value="n">
+				<title xml:lang="ko">사용안함</title>
+				</options>
+				<options value="y">
+				<title xml:lang="ko">사용함</title>
+				</options>															
+        </var>
+        <var name="twm" type="text">
+            <title xml:lang="ko">● 트위터 멘션</title>
+			<description xml:lang="ko">멘션될 트위터 주소를 입력하세요.</description>
+        </var>	
+		</group>			
+		
+		
+    </extra_vars>
+</skin>

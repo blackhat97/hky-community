@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="ko">
+<load target="css/layout.css" />
+<load target="../../common/xeicon/xeicon.min.css" />
+<html>
+	<head>
+	<!-- META -->
+	<meta name="robots" content="index, follow" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="keyword" content="Community Issues Politics Humor Bizarre Sites" />
+	<meta name="description" content="Community Issues Politics Humor Bizarre Sites" />
+	<meta name="viewport" content="width=980">
+	<!-- TITLE -->
+	<title>EZ Layout</title>		
+	</head>
+<body>
+	<div class="ez_body">
+		<nav class="ez_top">
+			<div class="ez_tbox">
+				<div class="logo_box">
+					<a href="{geturl('')}">
+					<img src="siteTitle.png" alt="Ezfeel" cond="!Context::getSiteTitle() && !$layout_info->LOGO_IMG && !$layout_info->LOGO_TEXT">
+					<block cond="Context::getSiteTitle() && !$layout_info->LOGO_IMG && !$layout_info->LOGO_TEXT">{Context::getSiteTitle()}</block>
+					<img src="{$layout_info->LOGO_IMG}" alt="{$layout_info->LOGO_TEXT}" cond="$layout_info->LOGO_IMG">
+					<block cond="!$layout_info->LOGO_IMG && $layout_info->LOGO_TEXT">{$layout_info->LOGO_TEXT}</block>
+					</a>
+				</div>
+				<ul class="dropdown">
+					<li loop="$GNB->list=>$key1,$val1">
+						<a href="{$val1['href']}" target="_blank"|cond="$val1['open_window']=='Y'">{$val1['link']}</a>
+						<ul cond="$val1['list']">
+							<li loop="$val1['list']=>$key2,$val2" class="active"|cond="$val2['selected']"><a href="{$val2['href']}" target="_blank"|cond="$val2['open_window']=='Y'">{$val2['link']}</a></li>
+						</ul>
+					</li>
+				</ul>			
+				<div class="menubar">
+					  <ul>
+						 <li><a href="#" id="current"><i class="xi-align-justify"></i></a>
+							<ul>
+							<block cond="$is_logged">
+								<li><a class="first_a" href="{getUrl('act','dispMemberLogout')}">{$lang->cmd_logout}</a></li>
+								<li><a href="{getUrl('act','dispMemberInfo','mid', $layout_info->fbmember_info)}">{$lang->cmd_view_member_info}</a></li>
+								<!--@if($grant->is_admin)-->
+								<li><a href="{getUrl('','module','admin')}">{$lang->cmd_management}</a></li>
+								<!--@end-->
+							</block>
+							<block cond="!$is_logged">
+								<li><a class="first_a" href="{getUrl('act','dispMemberLoginForm')}">{$lang->cmd_login}</a></li>
+								<li><a href="{getUrl('act','dispMemberSignUpForm','mid', $layout_info->fbmember_info)}">{$lang->cmd_signup}</a></li>
+								<li><a href="{getUrl('act','dispMemberFindAccount','mid', $layout_info->fbmember_info)}">{$lang->cmd_find_member_account}</a></li>
+							</block>
+							</ul>
+						 </li>
+					  </ul>
+				</div>		
+			</div>	
+		</nav>
+		<div class="top_annoucements">
+			<div class="annoucements_title ">
+				<div class="xicon"><i class="xi-pin"></i></div><h1 class="p-title-value"><p cond="$layout_info->NOTICE_TEXT"><marquee width=745>{$layout_info->NOTICE_TEXT}</marquee></p></h1>
+			<div class="search_box">
+			<!-- SEARCH -->
+				<form action="{getUrl()}" method="get" class="search">
+					<input type="hidden" name="vid" value="{$vid}" />
+					<input type="hidden" name="mid" value="{$mid}" />
+					<input type="hidden" name="act" value="IS" />
+					<input type="text" name="is_keyword" value="{$is_keyword}" required placeholder="{$lang->cmd_search}" title="{$lang->cmd_search}" />
+					<input type="submit" value="{$lang->cmd_search}" />
+				</form>
+			<!-- /SEARCH -->
+			</div>		
+			</div>
+		</div>		
+		<!-- BODY -->
+		<div class="ez_content">
+		<div class="wnddkd"><i class="xi-bars" style="color: #000;font-size: 15px;line-height: 30px;padding-left: 10px;"></i>
+		<ul class="center_box">
+			<li loop="$center_menu->list=>$key1,$val1">
+				<a href="{$val1['href']}" target="_blank"|cond="$val1['open_window']=='Y'">{$val1['link']}</a>
+				<ul cond="$val1['list']">
+					<li loop="$val1['list']=>$key2,$val2" class="active"|cond="$val2['selected']"><a href="{$val2['href']}" target="_blank"|cond="$val2['open_window']=='Y'">{$val2['link']}</a></li>
+				</ul>
+			</li>
+		</ul>
+		</div>		
+		{$content}
+		</div>
+		<!-- END:BODY -->
+		<div class="bottom_menu">
+			<ul id="bottom_box">
+				<li class="first-child">
+					<address>
+					<a href="https://cmsforum.net/" onclick="window.open(this.href);return false;"><img src="/layouts/ezfeel/img/love.png" alt="Layout By Ezayout" width="16" height="16" /> Layout By Ezayout</a>
+					</address>
+				</li>
+				<!--@foreach($bottom_menu->list as $key => $val)-->
+				<li><a href="{$val['href']}" <!--@if($val['open_window']=='Y')-->onclick="window.open(this.href);return false;"<!--@end-->>{$val['link']}</a></li>
+				<!--@endforeach-->
+			</ul>
+		</div>		
+		<footer class="ez_copy">
+            <h2><a href="http://xnamu.com/" class="button"><i class="xi-antenna" style="color: #fff;font-size: 15px;vertical-align: middle;"></i><img src="/layouts/ezfeel/img/logos.png" alt="EZ 레이아웃"></a></h2>
+            <span>Copyright by <strong>EZ 레이아웃.</strong> All rights reserved. Since 2019</span>
+		</footer>
+	</div>		
+</body>
+</html>

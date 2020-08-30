@@ -1,0 +1,381 @@
+{@
+Context::addHtmlHeader('<meta http-equiv="X-UA-Compatible" content="IE=edge">');
+Context::set("admin_bar","false");
+if(!$_COOKIE['fakeM']) Context::addHtmlHeader('<meta name="viewport" content="width=device-width, initial-scale=1">');
+}
+<load target="css/layout.css" />
+<load target="css/bootstrap.min.css" cond="$layout_info->bootstrap=='YES'" />
+<load target="css/font-awesome.min.css" index="-1"  />
+<load target="css/default.layout.webfont.css" cond="$layout_info->WEB_FONT == 'YES'" />
+<load target="../../common/js/respond.min.js" targetie="lt IE 9" />
+<load target="js/layout.js" type="body" />
+<load target="js/jquery.scrollUp.min.js" type="body" />
+<block cond="Mobile::isMobileCheckByAgent()">
+   <!--@if(file_exists('./common/js/jquery.min.js'))-->
+   {@ Context::addJsFile("./common/js/jquery.min.js", true, '', -10000011) }
+   <!--@elseif(file_exists('./common/js/jquery.js'))-->
+   {@ Context::addJsFile("./common/js/jquery.js", true, '', -10000011) }
+   <!--@end-->
+   <style>
+   .wrap_content{width:100% !important;}
+   .content{padding:0 !important;}
+   </style>
+</block>
+<!--@if(!$layout_info->basic_color)-->{@$layout_info->basic_color = "#526bbe"}<!--@end-->
+<!--@if(!$layout_info->slide_speed)-->{@$layout_info->slide_speed = "5000"}<!--@end-->
+<style>
+<block cond="$layout_info->basic_bg">
+.xe{background-color:{$layout_info->basic_bg}}
+</block>
+<block cond="$layout_info->basic_bgimg">
+.xe{background-image:url({$layout_info->basic_bgimg});background-repeat:repeat;}
+</block>
+<block cond="$layout_info->basic_color">
+.header,
+.gnb .nav li a:hover, 
+.gnb .nav li a:focus,
+.da-dots span,
+.da-arrows span,
+.bootstrap_body .btn-group .btn:hover,
+.da-slide .da-link:hover,
+.h2_widget span,
+.camera_wrap .camera_pag .camera_pag_ul li.cameracurrent > span,
+.owl-theme .owl-controls .owl-page.active span, 
+.owl-theme .owl-controls.clickable .owl-page:hover span,
+#scrollUp:hover {background-color:{$layout_info->basic_color};}
+.gnb .nav .open a.first_a,
+.total_menu a:hover,
+.total_menu a:focus,
+.da-slide .da-link,
+.h2_widget_a,
+a:hover,
+a:focus{color:{$layout_info->basic_color};}
+.da-slide .da-link {border-color:{$layout_info->basic_color};}
+</block>
+<block cond="$layout_info->xe_width">
+.xe_width{max-width:{$layout_info->xe_width}px;}
+</block>
+<block cond="$layout_info->menu_padding">
+.nav li a.first_a{padding:20px {$layout_info->menu_padding}px;}
+</block>
+<block cond="$layout_info->dropmenu_width">
+.navbar-left .dropdown-menu{width:{$layout_info->dropmenu_width}px;}
+</block>
+<block cond="$layout_info->total_menu_list">
+.total_menu ul .H_first_li{width:{100/$layout_info->total_menu_list}%;}
+</block>
+<block cond="$layout_info->footer_menu_list">
+.footer_li{width:{100/$layout_info->footer_menu_list}%;}
+</block>
+<block cond="$layout_info->main_slide">
+<block cond="$layout_info->slide_bg">
+.da-slider{background:url({$layout_info->slide_bg}) repeat;}
+</block>
+<block cond="$layout_info->slide_title_color">
+.da-slide h2,
+.slide_color1{color:{$layout_info->slide_title_color};}
+</block>
+<block cond="$layout_info->slide_text_color">
+.da-slide p,
+.slide_color2{color:{$layout_info->slide_text_color};}
+</block>
+</block>
+<block cond="$layout_info->c_bg_1">
+.wrap_widget1{background:{$layout_info->c_bg_1};}
+</block>
+<block cond="$layout_info->bottom_bg">
+.wrap_widget2{background:{$layout_info->bottom_bg};}
+</block>
+<block cond="$layout_info->footer_bg">
+.footer,
+body{background-color:{$layout_info->footer_bg} !important;}
+</block>
+<block cond="$layout_info->lnb_color">
+.footer,
+.in_lnb li.active{background-color:{$layout_info->lnb_color};}
+.lnb ul.in_lnb a{color:{$layout_info->lnb_color};}
+</block>
+<block cond="$layout_info->sub_bgimg">
+.sub_header{background-image:url({$layout_info->sub_bgimg});}
+</block>
+<block cond="$layout_info->c_bg">
+.in_content{background-color:{$layout_info->c_bg};}
+</block>
+
+</style>
+{@ $layout_info->so_widget = $layout_info->layout_srl*100; }
+<div class="xe {$layout_info->LAYOUT_TYPE}">
+	<p class="skip"><a href="#body">{$lang->skip_to_content}</a></p>
+	<header class="header">
+		<div class="xe_width">
+			<h1>
+				<a href="{geturl('')}" id="siteTitle">
+					<img src="img/logo.png" alt="XpressEngine" cond="!Context::getSiteTitle() && !$layout_info->LOGO_IMG && !$layout_info->LOGO_TEXT">
+					<block cond="Context::getSiteTitle() && !$layout_info->LOGO_IMG && !$layout_info->LOGO_TEXT">{Context::getSiteTitle()}</block>
+					<img src="{$layout_info->LOGO_IMG}" alt="{$layout_info->LOGO_TEXT}" cond="$layout_info->LOGO_IMG">
+					<block cond="!$layout_info->LOGO_IMG && $layout_info->LOGO_TEXT">{$layout_info->LOGO_TEXT}</block>
+				</a>
+			</h1>
+			
+			<!-- GNB -->
+			<nav class="gnb" id="gnb">
+				<ul class="nav navbar-nav navbar-left">
+					<li loop="$GNB->list=>$key1,$val1" class="dropdown">
+						<a class="first_a" href="{$val1['href']}" target="_blank"|cond="$val1['open_window']=='Y'">{$val1['link']}</a>
+						<ul cond="$val1['list']" class="dropdown-menu">
+							<li loop="$val1['list']=>$key2,$val2"><a href="{$val2['href']}" target="_blank"|cond="$val2['open_window']=='Y'">{$val2['link']}</a></li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+			<!-- /GNB -->
+			<!-- User Dropdown -->
+			<div class="navbar-right gnb">
+				<ul class="nav navbar-nav member-menu">
+					<li class="dropdown">
+						<block cond="$is_logged"><a class="first_a" href="{getUrl('act','dispMemberLogout')}">{$lang->cmd_logout}<i class="fa fa14 fa-sign-out"></i></a></block>
+						<block cond="!$is_logged"><a class="first_a" href="{getUrl('act','dispMemberLoginForm')}">{$lang->cmd_login}<i class="fa fa14 fa-sign-in"></i></a></block>
+						<ul class="dropdown-menu">
+							<block cond="!$is_logged">
+							<li><a class="act_login" href="{getUrl('act','dispMemberLoginForm')}">{$lang->cmd_login}</a></li>
+							<li><a href="{getUrl('act','dispMemberSignUpForm','mid', $layout_info->fbmember_info)}">{$lang->cmd_signup}</a></li>
+							<li><a href="{getUrl('act','dispMemberFindAccount','mid', $layout_info->fbmember_info)}">{$lang->cmd_find_member_account}</a></li>
+							</block>
+							<block cond="$is_logged">
+							<li cond="$logged_info->is_admin=='Y' && !$site_module_info->site_srl"><a href="{getUrl('','module','admin')}">{$lang->cmd_management}</a></li>
+							<li><a href="{getUrl('act','dispMemberLogout')}">{$lang->cmd_logout}</a></li>
+							<li><a href="{getUrl('act','dispMemberInfo','mid', $layout_info->fbmember_info)}">{$lang->cmd_view_member_info}</a></li>
+							</block>	
+						</ul>
+					</li>
+					<li class="total_act_li"><a href="#" class="first_a act_menu">전체<i class="fa fa14 fa-bars"> </i></a></li>
+				</ul>
+			</div>
+			<!-- END User Dropdown -->
+		</div>
+	</header>
+	<div class="total_menu">	
+		<div class="xe_width">
+			<ul class="clearBoth">
+				<li loop="$GNB->list=>$key1,$val1" cond="$val1['link']" class="active highlight H_first_li"|cond="$val1['selected']"  class="H_first_li"|cond="!$val1['selected']">
+					<a class="door_a total_first_a" href="{$val1['href']}" target="_blank"|cond="$val1['open_window']=='Y'">{$val1['link']}</a><button class="Nav_i" cond="$val1['list']"><i class="fa fa-plus-square"></i><i class="fa fa-minus-square"></i></button>
+					<ul cond="$val1['list']" class="total_sub1">
+						<li loop="$val1['list']=>$key2,$val2" cond="$val2['link']" class="H_second_li">
+							<a href="{$val2['href']}" class="door_a"  target="_blank"|cond="$val2['open_window']=='Y'"><i class="fa fa-caret-right"></i> {$val2['text']}</a>
+							
+						</li>
+					</ul>
+				</li>		
+			</ul>
+		</div>
+	</div>
+	<include target="slider/da-slider.html" cond="$layout_info->main_slide=='A'" />
+	<include target="slider/camera.html" cond="$layout_info->main_slide=='B'" />
+	<include target="slider/swiper.html" cond="$layout_info->main_slide=='C'" />
+	<div class="sub_header animation-pulseBgSlow" cond="$layout_info->sub_top&&!Mobile::isMobileCheckByAgent()">
+		<div class="ie_sub_header"><img src="{$layout_info->sub_bgimg}" alt="배경이미지" cond="$layout_info->sub_bgimg" /><img src="img/bg004.jpg" alt="배경이미지" cond="!$layout_info->sub_bgimg" /></div>
+		<div class="xe_width">
+			<h1>{Context::getBrowserTitle()}</h1>
+			<!-- depth 1 -->
+			<block loop="$GNB->list=>$key, $val" cond="$val['selected']">{@$menu_depth1 = $val}</block>
+			<!-- depth 2 -->
+			<block loop="$menu_depth1['list']=>$key, $val" cond="$val['selected'] && $menu_depth1">{@$menu_depth2 = $val}</block>
+			<div class="wrap_breadclumb" cond="$layout_info->breadclumb">
+				<ul class="breadclumb">
+																	
+					<li class="first_breadclumb">
+						<a href="{getSiteUrl()}">
+							<span>HOME</span><i class="fa fa-home"></i>
+						</a>
+					</li>
+					<li cond="$menu_depth1">
+						<a href="{$menu_depth1['href']}">{$menu_depth1['text']}</a>
+					</li>
+					<li cond="$menu_depth2">
+						<a href="{$menu_depth2['href']}">{$menu_depth2['text']}</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="wrap_widget wrap_widget1" cond="$layout_info->c_widget">
+		<div class="xe_width clearBoth">
+			<div class="widgetDW" cond="$layout_info->c_widget1_1||$layout_info->c_mid1_1">
+				<h2 cond="$layout_info->c_title1_1" class="h2_widget">
+					<span class="round4">{$layout_info->c_title1_1}</span>
+					<a class="h2_widget_a" href="{$layout_info->c_url1_1}"><i class="fa fa18 fa-plus"></i></a>
+				</h2>
+				<div class="in_widget">
+					<block cond="$layout_info->c_style1_1=='A'">
+					<img class="zbxe_widget_output" widget="content" skin="doorweb" colorset="white" content_type="document" list_type="normal" tab_type="none" module_srls="{$layout_info->c_mid1_1}" widget_sequence="{$layout_info->so_widget+1}" widget_cache="1" markup_type="table" page_count="1" content_cut_size="200" list_count="6" option_view="title,regdate" show_browser_title="N" show_comment_count="N" show_trackback_count="N" show_category="N" show_icon="N" order_target="regdate" order_type="desc" thumbnail_type="crop" thumbnail_width="300" thumbnail_height="200" />
+					</block>
+					<block cond="$layout_info->c_style1_1=='B'">
+					<img class="zbxe_widget_output" widget="content" skin="doorweb" colorset="white" content_type="document" list_type="image_title_content" tab_type="none" module_srls="{$layout_info->c_mid1_1}" widget_sequence="{$layout_info->so_widget+1}" widget_cache="1" markup_type="table" page_count="1" content_cut_size="200" list_count="2" option_view="title,regdate,thumbnail,content" show_browser_title="N" show_comment_count="N" show_trackback_count="N" show_category="N" show_icon="N" order_target="regdate" order_type="desc" thumbnail_type="crop" thumbnail_width="300" thumbnail_height="200" />
+					</block>
+					<block cond="$layout_info->c_style1_1=='C'">
+					<img class="zbxe_widget_output" widget="content" skin="doorweb" colorset="white" content_type="document" list_type="gallery" tab_type="none" module_srls="{$layout_info->c_mid1_1}" widget_sequence="194" widget_cache="{$layout_info->so_widget+1}" markup_type="table" page_count="1" content_cut_size="200" list_count="4" cols_list_count="2" option_view="thumbnail" show_browser_title="N" show_comment_count="N" show_trackback_count="N" show_category="N" show_icon="N" order_target="regdate" order_type="desc" thumbnail_type="crop" thumbnail_width="300" thumbnail_height="200" />
+					</block>
+					{$layout_info->c_widget1_1}
+				</div>
+			</div>
+			<div class="widgetDW widgetDW_1" cond="$layout_info->c_widget1_2||$layout_info->c_mid1_2">
+				<h2 cond="$layout_info->c_title1_2" class="h2_widget">
+					<span class="round4">{$layout_info->c_title1_2}</span>
+					<a class="h2_widget_a" href="{$layout_info->c_url1_2}"><i class="fa fa18 fa-plus"></i></a>
+				</h2>
+				<div class="in_widget">
+					<block cond="$layout_info->c_style1_2=='A'">
+					<img class="zbxe_widget_output" widget="content" skin="doorweb" colorset="white" content_type="document" list_type="normal" tab_type="none" module_srls="{$layout_info->c_mid1_2}" widget_sequence="{$layout_info->so_widget+2}" widget_cache="1" markup_type="table" page_count="1" content_cut_size="200" list_count="6" option_view="title,regdate" show_browser_title="N" show_comment_count="N" show_trackback_count="N" show_category="N" show_icon="N" order_target="regdate" order_type="desc" thumbnail_type="crop" thumbnail_width="300" thumbnail_height="200" />
+					</block>
+					<block cond="$layout_info->c_style1_2=='B'">
+					<img class="zbxe_widget_output" widget="content" skin="doorweb" colorset="white" content_type="document" list_type="image_title_content" tab_type="none" module_srls="{$layout_info->c_mid1_2}" widget_sequence="{$layout_info->so_widget+2}" widget_cache="1" markup_type="table" page_count="1" content_cut_size="200" list_count="2" option_view="title,regdate,thumbnail,content" show_browser_title="N" show_comment_count="N" show_trackback_count="N" show_category="N" show_icon="N" order_target="regdate" order_type="desc" thumbnail_type="crop" thumbnail_width="300" thumbnail_height="200" />
+					</block>
+					<block cond="$layout_info->c_style1_2=='C'">
+					<img class="zbxe_widget_output" widget="content" skin="doorweb" colorset="white" content_type="document" list_type="gallery" tab_type="none" module_srls="{$layout_info->c_mid1_2}" widget_sequence="{$layout_info->so_widget+2}" widget_cache="1" markup_type="table" page_count="1" content_cut_size="200" list_count="4" cols_list_count="2" option_view="thumbnail" show_browser_title="N" show_comment_count="N" show_trackback_count="N" show_category="N" show_icon="N" order_target="regdate" order_type="desc" thumbnail_type="crop" thumbnail_width="300" thumbnail_height="200" />
+					</block>
+					{$layout_info->c_widget1_2}
+				</div>
+			</div>
+			
+			<div class="widgetDW widgetDW_1" cond="$layout_info->c_widget1_3||$layout_info->c_mid1_3">
+				<h2 cond="$layout_info->c_title1_3" class="h2_widget">
+					<span class="round4">{$layout_info->c_title1_3}</span>
+					<a class="h2_widget_a" href="{$layout_info->c_url1_3}"><i class="fa fa18 fa-plus"></i></a>
+				</h2>
+				<div class="in_widget">
+					<block cond="$layout_info->c_style1_3=='A'">
+					<img class="zbxe_widget_output" widget="content" skin="doorweb" colorset="white" content_type="document" list_type="normal" tab_type="none" module_srls="{$layout_info->c_mid1_3}" widget_sequence="{$layout_info->so_widget+3}" widget_cache="1" markup_type="table" page_count="1" content_cut_size="200" list_count="6" option_view="title,regdate" show_browser_title="N" show_comment_count="N" show_trackback_count="N" show_category="N" show_icon="N" order_target="regdate" order_type="desc" thumbnail_type="crop" thumbnail_width="300" thumbnail_height="200" />
+					</block>
+					<block cond="$layout_info->c_style1_3=='B'">
+					<img class="zbxe_widget_output" widget="content" skin="doorweb" colorset="white" content_type="document" list_type="image_title_content" tab_type="none" module_srls="{$layout_info->c_mid1_3}" widget_sequence="{$layout_info->so_widget+3}" widget_cache="1" markup_type="table" page_count="1" content_cut_size="200" list_count="2" option_view="title,regdate,thumbnail,content" show_browser_title="N" show_comment_count="N" show_trackback_count="N" show_category="N" show_icon="N" order_target="regdate" order_type="desc" thumbnail_type="crop" thumbnail_width="300" thumbnail_height="200" />
+					</block>
+					<block cond="$layout_info->c_style1_3=='C'">
+					<img class="zbxe_widget_output" widget="content" skin="doorweb" colorset="white" content_type="document" list_type="gallery" tab_type="none" module_srls="{$layout_info->c_mid1_3}" widget_sequence="{$layout_info->so_widget+3}" widget_cache="1" markup_type="table" page_count="1" content_cut_size="200" list_count="4" cols_list_count="2" option_view="thumbnail" show_browser_title="N" show_comment_count="N" show_trackback_count="N" show_category="N" show_icon="N" order_target="regdate" order_type="desc" thumbnail_type="crop" thumbnail_width="300" thumbnail_height="200" />
+					</block>
+					{$layout_info->c_widget1_3}
+				</div>
+			</div>
+		</div>
+	</div>	
+	<div class="body bootstrap_body"|cond="$layout_info->bootstrap=='YES'" class="body"|cond="$layout_info->bootstrap=='NO'" id="body" cond="$content">
+		<div class="xe_width clearBoth">
+			<!-- LNB -->
+			<div class="wrap_lnb" cond="$layout_info->LAYOUT_TYPE == 'ec'||$layout_info->LAYOUT_TYPE == 'ce'">
+				<nav class="lnb" cond="!Mobile::isMobileCheckByAgent()">
+					<div class="wrap_gnb" loop="$GNB->list=>$key1,$val1" cond="$val1['selected'] && $val1['list']">
+						<ul class="lnb_section in_lnb">
+							<li loop="$val1['list']=>$key2,$val2" class="active"|cond="$val2['selected']"><a href="{$val2['href']}" target="_blank"|cond="$val2['open_window']=='Y'">{$val2['link']}</a>
+								<ul cond="$val2['list']">
+									<li loop="$val2['list']=>$key3,$val3" class="active"|cond="$val3['selected']"><a href="{$val3['href']}" target="_blank"|cond="$val3['open_window']=='Y'">{$val3['link']}</a></li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+					<div class="wrap_ec_widget" cond="$layout_info->ec_widget">
+						<div class="lnb_section">
+							<div class="widgetDW_sub" cond="$layout_info->ec_widget1_1||$layout_info->ec_mid1_1">
+								<h2 cond="$layout_info->ec_title1_1" class="h2_widget">
+									<span>{$layout_info->ec_title1_1}</span>
+									<a class="h2_widget_a" href="{$layout_info->ec_url1_1}"><i class="fa fa14 fa-plus"></i></a>
+								</h2>
+								<div class="in_widget">
+									<block cond="$layout_info->ec_style1_1=='A'">
+									<img class="zbxe_widget_output" widget="content" skin="doorweb" colorset="white" content_type="document" list_type="normal" subject_cut_size="40" tab_type="none" module_srls="{$layout_info->ec_mid1_1}" widget_sequence="{$layout_info->so_widget+4}" widget_cache="1" markup_type="table" page_count="1" content_cut_size="200" list_count="6" option_view="title,regdate" show_browser_title="N" show_comment_count="N" show_trackback_count="N" show_category="N" show_icon="N" order_target="regdate" order_type="desc" thumbnail_type="crop" thumbnail_width="300" thumbnail_height="200" />
+									</block>
+									<block cond="$layout_info->ec_style1_1=='B'">
+									<img class="zbxe_widget_output" widget="content" skin="doorweb" colorset="white" content_type="document" list_type="image_title_content" tab_type="none" module_srls="{$layout_info->ec_mid1_1}" widget_sequence="{$layout_info->so_widget+4}" widget_cache="1" markup_type="table" page_count="1" content_cut_size="200" list_count="5" option_view="title,regdate,thumbnail,content" show_browser_title="N" show_comment_count="N" show_trackback_count="N" show_category="N" show_icon="N" order_target="regdate" order_type="desc" thumbnail_type="crop" thumbnail_width="300" thumbnail_height="200" />
+									</block>
+									<block cond="$layout_info->ec_style1_1=='C'">
+									<img class="zbxe_widget_output" widget="content" skin="doorweb" colorset="white" content_type="document" list_type="gallery" tab_type="none" module_srls="{$layout_info->ec_mid1_1}" widget_sequence="{$layout_info->so_widget+4}" widget_cache="1" markup_type="table" page_count="1" content_cut_size="200" list_count="4" cols_list_count="2" option_view="thumbnail" show_browser_title="N" show_comment_count="N" show_trackback_count="N" show_category="N" show_icon="N" order_target="regdate" order_type="desc" thumbnail_type="crop" thumbnail_width="300" thumbnail_height="200" />
+									</block>
+									{$layout_info->ec_widget1_1}
+								</div>
+							</div>
+							<div class="widgetDW_sub widgetDW_sub1" cond="$layout_info->ec_widget1_2||$layout_info->ec_mid1_2">
+								<h2 cond="$layout_info->ec_title1_2" class="h2_widget">
+									<span>{$layout_info->ec_title1_2}</span>
+									<a class="h2_widget_a" href="{$layout_info->ec_url1_2}"><i class="fa fa14 fa-plus"></i></a>
+								</h2>
+								<div class="in_widget">
+									<block cond="$layout_info->ec_style1_2=='A'">
+									<img class="zbxe_widget_output" widget="content" skin="doorweb" colorset="white" content_type="document" list_type="normal" subject_cut_size="40" tab_type="none" module_srls="{$layout_info->ec_mid1_2}" widget_sequence="{$layout_info->so_widget+5}" widget_cache="1" markup_type="table" page_count="1" content_cut_size="200" list_count="6" option_view="title,regdate" show_browser_title="N" show_comment_count="N" show_trackback_count="N" show_category="N" show_icon="N" order_target="regdate" order_type="desc" thumbnail_type="crop" thumbnail_width="300" thumbnail_height="200" />
+									</block>
+									<block cond="$layout_info->ec_style1_2=='B'">
+									<img class="zbxe_widget_output" widget="content" skin="doorweb" colorset="white" content_type="document" list_type="image_title_content" tab_type="none" module_srls="{$layout_info->ec_mid1_2}" widget_sequence="{$layout_info->so_widget+5}" widget_cache="1" markup_type="table" page_count="1" content_cut_size="200" list_count="5" option_view="title,regdate,thumbnail,content" show_browser_title="N" show_comment_count="N" show_trackback_count="N" show_category="N" show_icon="N" order_target="regdate" order_type="desc" thumbnail_type="crop" thumbnail_width="300" thumbnail_height="200" />
+									</block>
+									<block cond="$layout_info->ec_style1_2=='C'">
+									<img class="zbxe_widget_output" widget="content" skin="doorweb" colorset="white" content_type="document" list_type="gallery" tab_type="none" module_srls="{$layout_info->ec_mid1_2}" widget_sequence="{$layout_info->so_widget+5}" widget_cache="1" markup_type="table" page_count="1" content_cut_size="200" list_count="4" cols_list_count="2" option_view="thumbnail" show_browser_title="N" show_comment_count="N" show_trackback_count="N" show_category="N" show_icon="N" order_target="regdate" order_type="desc" thumbnail_type="crop" thumbnail_width="300" thumbnail_height="200" />
+									</block>
+									{$layout_info->ec_widget1_2}
+								</div>
+							</div>
+			
+							<div class="widgetDW_sub widgetDW_sub1" cond="$layout_info->ec_widget1_3||$layout_info->ec_mid1_3">
+								<h2 cond="$layout_info->ec_title1_3" class="h2_widget">
+									<span>{$layout_info->ec_title1_3}</span>
+									<a class="h2_widget_a" href="{$layout_info->ec_url1_3}"><i class="fa fa14 fa-plus"></i></a>
+								</h2>
+								<div class="in_widget">
+									<block cond="$layout_info->ec_style1_3=='A'">
+									<img class="zbxe_widget_output" widget="content" skin="doorweb" colorset="white" content_type="document" list_type="normal" subject_cut_size="40" tab_type="none" module_srls="{$layout_info->ec_mid1_3}" widget_sequence="{$layout_info->so_widget+6}" widget_cache="1" markup_type="table" page_count="1" content_cut_size="200" list_count="6" option_view="title,regdate" show_browser_title="N" show_comment_count="N" show_trackback_count="N" show_category="N" show_icon="N" order_target="regdate" order_type="desc" thumbnail_type="crop" thumbnail_width="300" thumbnail_height="200" />
+									</block>
+									<block cond="$layout_info->ec_style1_3=='B'">
+									<img class="zbxe_widget_output" widget="content" skin="doorweb" colorset="white" content_type="document" list_type="image_title_content" tab_type="none" module_srls="{$layout_info->ec_mid1_3}" widget_sequence="{$layout_info->so_widget+6}" widget_cache="1" markup_type="table" page_count="1" content_cut_size="200" list_count="5" option_view="title,regdate,thumbnail,content" show_browser_title="N" show_comment_count="N" show_trackback_count="N" show_category="N" show_icon="N" order_target="regdate" order_type="desc" thumbnail_type="crop" thumbnail_width="300" thumbnail_height="200" />
+									</block>
+									<block cond="$layout_info->ec_style1_3=='C'">
+									<img class="zbxe_widget_output" widget="content" skin="doorweb" colorset="white" content_type="document" list_type="gallery" tab_type="none" module_srls="{$layout_info->ec_mid1_3}" widget_sequence="{$layout_info->so_widget+6}" widget_cache="1" markup_type="table" page_count="1" content_cut_size="200" list_count="4" cols_list_count="2" option_view="thumbnail" show_browser_title="N" show_comment_count="N" show_trackback_count="N" show_category="N" show_icon="N" order_target="regdate" order_type="desc" thumbnail_type="crop" thumbnail_width="300" thumbnail_height="200" />
+									</block>
+									{$layout_info->ec_widget1_3}
+								</div>
+							</div>
+						</div>
+					</div>
+				</nav>
+			</div>
+			<!-- /LNB -->
+			<!-- CONTENT -->
+			<div class="wrap_content has_bg"|cond="$layout_info->c_bg" class="wrap_content"|cond="!$layout_info->c_bg">
+				<div class="content" id="content">
+					<div class="in_content">{$content}</div>
+				</div>
+			</div>
+			<!-- /CONTENT -->
+		</div>
+	</div>
+	<include target="slider/owl.html" cond="$layout_info->bottom_slide" />
+</div>
+<footer class="footer">
+	<div class="xe_width clearBoth">
+		<div class="footer_left">
+			<a href="{geturl('')}" cond="$layout_info->footer_logo">
+				<img src="{$layout_info->footer_logo}" alt="{$layout_info->LOGO_TEXT}" />
+			</a>
+		</div>
+		<div class="footer_right">
+			<ul class="clearBoth">
+				<li loop="$footer_menu->list=>$key1,$val1" cond="$val1['link']" class="active highlight footer_li"|cond="$val1['selected']" class="footer_li"|cond="!$val1['selected']">
+					<a class="foot_first_a" href="{$val1['href']}" target="_blank"|cond="$val1['open_window']=='Y'">{$val1['link']}</a>
+					<ul cond="$val1['list']">
+						<li loop="$val1['list']=>$key2,$val2" cond="$val2['link']">
+							<a href="{$val2['href']}" target="_blank"|cond="$val2['open_window']=='Y'">{$val2['text']}</a>
+							
+						</li>
+					</ul>
+				</li>		
+			</ul>
+			<div class="copylight">
+				<p cond="!$layout_info->FOOTER">Powered by <a href="http://doorweb.net/xe">DoorWeb</a>.</p>
+				<p cond="$layout_info->FOOTER">{$layout_info->FOOTER}</p>
+			</div>
+		</div>
+	</div>
+</footer>
+
+<script>
+
+		/* scrollUp Minimum setup */
+	jQuery(function($){
+			$.scrollUp();
+		});
+
+	</script>

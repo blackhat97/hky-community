@@ -1,0 +1,48 @@
+
+<load target="../css/slide.css" />
+<load target="../js/modernizr.custom.js" type="body" />
+<load target="../js/jquery.cslider.js" type="body" />
+
+
+	<div id="da-slider" class="da-slider" cond="$layout_info->main_slide">
+		<div class="da-slide" cond="$layout_info->slide_img1">
+			<h2>{$layout_info->slide_title1}</h2>
+			<p>{$layout_info->slide_text1}</p>
+			<a cond="$layout_info->slide_url1" href="{$layout_info->slide_url1}" class="da-link">Read more</a>
+			<div class="da-img"><img src="{$layout_info->slide_img1}" alt="{$layout_info->slide_title1}" /></div>
+		</div>
+		
+		<div class="da-slide" cond="$layout_info->slide_img2">
+			<h2>{$layout_info->slide_title2}</h2>
+			<p>{$layout_info->slide_text2}</p>
+			<a cond="$layout_info->slide_url2" href="{$layout_info->slide_url2}" class="da-link">Read more</a>
+			<div class="da-img"><img src="{$layout_info->slide_img2}" alt="{$layout_info->slide_title2}" /></div>
+		</div>
+		<div class="da-slide" cond="$layout_info->slide_img3">
+			<h2>{$layout_info->slide_title3}</h2>
+			<p>{$layout_info->slide_text3}</p>
+			<a cond="$layout_info->slide_url3" href="{$layout_info->slide_url3}" class="da-link">Read more</a>
+			<div class="da-img"><img src="{$layout_info->slide_img3}" alt="{$layout_info->slide_title3}" /></div>
+		</div>
+		<div class="da-slide" cond="$layout_info->slide_img4">
+			<h2>{$layout_info->slide_title4}</h2>
+			<p>{$layout_info->slide_text4}</p>
+			<a cond="$layout_info->slide_url4" href="{$layout_info->slide_url4}" class="da-link">Read more</a>
+			<div class="da-img"><img src="{$layout_info->slide_img4}" alt="{$layout_info->slide_title4}" /></div>
+		</div>
+		<nav class="da-arrows">
+			<span class="da-arrows-prev"></span>
+			<span class="da-arrows-next"></span>
+		</nav>
+		<script type="text/javascript">
+			jQuery(function($){
+			
+				$('#da-slider').cslider({
+					autoplay	: true,
+					bgincrement	: 450,
+					interval	: {$layout_info->slide_speed}
+				});
+			
+		});
+		</script>	
+	</div>
